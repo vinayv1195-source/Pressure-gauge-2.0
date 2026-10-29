@@ -1,0 +1,871 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_main"
+    android:fitsSystemWindows="true">
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/mainScrollView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingHorizontal="16dp"
+            android:paddingTop="16dp"
+            android:paddingBottom="32dp">
+
+            <!-- ============================================== -->
+            <!-- HEADER BAR                                     -->
+            <!-- ============================================== -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="38dp"
+                    android:layout_height="38dp"
+                    android:contentDescription="@string/app_name"
+                    android:src="@drawable/ic_gauge" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/app_name"
+                        android:textColor="@color/text_primary"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/app_subtitle"
+                        android:textColor="@color/text_secondary"
+                        android:textSize="11sp" />
+                </LinearLayout>
+
+                <!-- CLEAR & RESET BUTTONS -->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/btnClear"
+                        style="@style/Widget.Material3.Button.TonalButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="38dp"
+                        android:background="@drawable/bg_btn_clear"
+                        android:minWidth="0dp"
+                        android:paddingHorizontal="12dp"
+                        android:paddingVertical="0dp"
+                        android:text="@string/btn_clear"
+                        android:textColor="@color/btn_clear_text"
+                        android:textSize="12sp"
+                        android:textStyle="bold"
+                        app:backgroundTint="@null" />
+
+                    <Button
+                        android:id="@+id/btnReset"
+                        style="@style/Widget.Material3.Button"
+                        android:layout_width="wrap_content"
+                        android:layout_height="38dp"
+                        android:layout_marginStart="8dp"
+                        android:background="@drawable/bg_btn_reset"
+                        android:minWidth="0dp"
+                        android:paddingHorizontal="12dp"
+                        android:paddingVertical="0dp"
+                        android:text="@string/btn_reset"
+                        android:textColor="@color/btn_reset_text"
+                        android:textSize="12sp"
+                        android:textStyle="bold"
+                        app:backgroundTint="@null" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- ============================================== -->
+            <!-- SECTION 1: PRESSURE CONVERTER                  -->
+            <!-- ============================================== -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/bg_card_industrial"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/title_converter"
+                    android:textColor="@color/cyan_accent"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+
+                <!-- Input Pressure Field -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="@string/label_input_pressure"
+                    android:textColor="@color/text_secondary"
+                    android:textSize="12sp" />
+
+                <EditText
+                    android:id="@+id/etPressureInput"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="6dp"
+                    android:background="@drawable/bg_input_field"
+                    android:digits="0123456789."
+                    android:hint="@string/hint_enter_pressure"
+                    android:importantForAutofill="no"
+                    android:inputType="numberDecimal"
+                    android:paddingHorizontal="14dp"
+                    android:text="100"
+                    android:textColor="@color/text_primary"
+                    android:textColorHint="@color/text_muted"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tvInputError"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:textColor="@color/text_error"
+                    android:textSize="11sp"
+                    android:visibility="gone" />
+
+                <!-- Unit Selection 4-Way Buttons -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:text="Select Base Unit"
+                    android:textColor="@color/text_secondary"
+                    android:textSize="12sp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="44dp"
+                    android:layout_marginTop="6dp"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/btnUnitKgCm2"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginEnd="4dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/bg_unit_button_selected"
+                        android:text="@string/unit_kg_cm2"
+                        android:textAllCaps="false"
+                        android:textColor="@color/unit_selected_text"
+                        android:textSize="12sp"
+                        android:textStyle="bold"
+                        app:backgroundTint="@null" />
+
+                    <Button
+                        android:id="@+id/btnUnitBar"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginHorizontal="2dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/bg_unit_button_unselected"
+                        android:text="@string/unit_bar"
+                        android:textAllCaps="false"
+                        android:textColor="@color/unit_unselected_text"
+                        android:textSize="12sp"
+                        android:textStyle="bold"
+                        app:backgroundTint="@null" />
+
+                    <Button
+                        android:id="@+id/btnUnitPsi"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginHorizontal="2dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/bg_unit_button_unselected"
+                        android:text="@string/unit_psi"
+                        android:textAllCaps="false"
+                        android:textColor="@color/unit_unselected_text"
+                        android:textSize="12sp"
+                        android:textStyle="bold"
+                        app:backgroundTint="@null" />
+
+                    <Button
+                        android:id="@+id/btnUnitMpa"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="4dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/bg_unit_button_unselected"
+                        android:text="@string/unit_mpa"
+                        android:textAllCaps="false"
+                        android:textColor="@color/unit_unselected_text"
+                        android:textSize="12sp"
+                        android:textStyle="bold"
+                        app:backgroundTint="@null" />
+                </LinearLayout>
+
+                <!-- Live Conversion Results Cards -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="@string/title_instant_conversions"
+                    android:textColor="@color/text_secondary"
+                    android:textSize="12sp" />
+
+                <!-- Grid of 4 Conversion Result Cards -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:orientation="vertical">
+
+                    <!-- Row 1: kg/cm² & bar -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <!-- Card kg/cm² -->
+                        <LinearLayout
+                            android:id="@+id/cardResultKgCm2"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="4dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/bg_card_highlight"
+                            android:orientation="vertical"
+                            android:padding="10dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/unit_kg_cm2"
+                                android:textColor="@color/cyan_accent"
+                                android:textSize="11sp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/tvResultKgCm2"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="4dp"
+                                android:text="100"
+                                android:textColor="@color/text_primary"
+                                android:textSize="17sp"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+
+                        <!-- Card bar -->
+                        <LinearLayout
+                            android:id="@+id/cardResultBar"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="4dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/bg_card_industrial"
+                            android:orientation="vertical"
+                            android:padding="10dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/unit_bar"
+                                android:textColor="@color/text_secondary"
+                                android:textSize="11sp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/tvResultBar"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="4dp"
+                                android:text="98.0665"
+                                android:textColor="@color/text_blue_result"
+                                android:textSize="17sp"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <!-- Row 2: PSI & MPa -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:orientation="horizontal">
+
+                        <!-- Card PSI -->
+                        <LinearLayout
+                            android:id="@+id/cardResultPsi"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="4dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/bg_card_industrial"
+                            android:orientation="vertical"
+                            android:padding="10dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/unit_psi"
+                                android:textColor="@color/text_secondary"
+                                android:textSize="11sp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/tvResultPsi"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="4dp"
+                                android:text="1422.33"
+                                android:textColor="@color/text_blue_result"
+                                android:textSize="17sp"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+
+                        <!-- Card MPa -->
+                        <LinearLayout
+                            android:id="@+id/cardResultMpa"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="4dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/bg_card_industrial"
+                            android:orientation="vertical"
+                            android:padding="10dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/unit_mpa"
+                                android:textColor="@color/text_secondary"
+                                android:textSize="11sp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/tvResultMpa"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="4dp"
+                                android:text="9.80665"
+                                android:textColor="@color/text_blue_result"
+                                android:textSize="17sp"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <!-- ============================================== -->
+            <!-- SECTION 2: 1% TO 100% PERCENTAGE CALCULATOR    -->
+            <!-- ============================================== -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/bg_card_industrial"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/title_percentage_calculator"
+                    android:textColor="@color/cyan_accent"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:text="@string/subtitle_percentage"
+                    android:textColor="@color/text_secondary"
+                    android:textSize="11sp" />
+
+                <!-- Selected Percentage Preview Banner -->
+                <LinearLayout
+                    android:id="@+id/bannerSelectedPercent"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:background="@drawable/bg_card_highlight"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingHorizontal="14dp"
+                    android:paddingVertical="10dp">
+
+                    <TextView
+                        android:id="@+id/tvBannerPercent"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/bg_badge_percent_active"
+                        android:paddingHorizontal="10dp"
+                        android:paddingVertical="4dp"
+                        android:text="50%"
+                        android:textColor="@color/white"
+                        android:textSize="15sp"
+                        android:textStyle="bold" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/percent_selected_preview"
+                            android:textColor="@color/text_secondary"
+                            android:textSize="10sp" />
+
+                        <TextView
+                            android:id="@+id/tvBannerPressureValue"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="50.0 kg/cm²"
+                            android:textColor="@color/cyan_accent"
+                            android:textSize="17sp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/tvBannerFormula"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="100 × 50 ÷ 100"
+                        android:textColor="@color/text_muted"
+                        android:textSize="11sp" />
+                </LinearLayout>
+
+                <!-- Search / Quick Jump Field -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="44dp"
+                    android:layout_marginTop="12dp"
+                    android:background="@drawable/bg_input_field"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingHorizontal="10dp">
+
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:contentDescription="Search"
+                        android:src="@drawable/ic_search" />
+
+                    <EditText
+                        android:id="@+id/etSearchPercent"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="8dp"
+                        android:layout_weight="1"
+                        android:background="@null"
+                        android:hint="@string/hint_search_percentage"
+                        android:importantForAutofill="no"
+                        android:inputType="number"
+                        android:maxLength="3"
+                        android:textColor="@color/text_primary"
+                        android:textColorHint="@color/text_muted"
+                        android:textSize="13sp" />
+
+                    <Button
+                        android:id="@+id/btnQuickJump"
+                        style="@style/Widget.Material3.Button"
+                        android:layout_width="wrap_content"
+                        android:layout_height="32dp"
+                        android:background="@drawable/bg_unit_button_selected"
+                        android:minWidth="0dp"
+                        android:paddingHorizontal="10dp"
+                        android:paddingVertical="0dp"
+                        android:text="JUMP"
+                        android:textColor="@color/white"
+                        android:textSize="11sp"
+                        android:textStyle="bold"
+                        app:backgroundTint="@null" />
+                </LinearLayout>
+
+                <!-- Quick Preset Jump Chips -->
+                <HorizontalScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:scrollbars="none">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <Button
+                            android:id="@+id/chip10"
+                            android:layout_width="wrap_content"
+                            android:layout_height="34dp"
+                            android:layout_marginEnd="6dp"
+                            android:background="@drawable/bg_unit_button_unselected"
+                            android:minWidth="0dp"
+                            android:paddingHorizontal="10dp"
+                            android:text="10%"
+                            android:textColor="@color/unit_unselected_text"
+                            android:textSize="11sp"
+                            app:backgroundTint="@null" />
+
+                        <Button
+                            android:id="@+id/chip25"
+                            android:layout_width="wrap_content"
+                            android:layout_height="34dp"
+                            android:layout_marginEnd="6dp"
+                            android:background="@drawable/bg_unit_button_unselected"
+                            android:minWidth="0dp"
+                            android:paddingHorizontal="10dp"
+                            android:text="25%"
+                            android:textColor="@color/unit_unselected_text"
+                            android:textSize="11sp"
+                            app:backgroundTint="@null" />
+
+                        <Button
+                            android:id="@+id/chip33"
+                            android:layout_width="wrap_content"
+                            android:layout_height="34dp"
+                            android:layout_marginEnd="6dp"
+                            android:background="@drawable/bg_unit_button_unselected"
+                            android:minWidth="0dp"
+                            android:paddingHorizontal="10dp"
+                            android:text="33%"
+                            android:textColor="@color/unit_unselected_text"
+                            android:textSize="11sp"
+                            app:backgroundTint="@null" />
+
+                        <Button
+                            android:id="@+id/chip50"
+                            android:layout_width="wrap_content"
+                            android:layout_height="34dp"
+                            android:layout_marginEnd="6dp"
+                            android:background="@drawable/bg_unit_button_unselected"
+                            android:minWidth="0dp"
+                            android:paddingHorizontal="10dp"
+                            android:text="50%"
+                            android:textColor="@color/unit_unselected_text"
+                            android:textSize="11sp"
+                            app:backgroundTint="@null" />
+
+                        <Button
+                            android:id="@+id/chip75"
+                            android:layout_width="wrap_content"
+                            android:layout_height="34dp"
+                            android:layout_marginEnd="6dp"
+                            android:background="@drawable/bg_unit_button_unselected"
+                            android:minWidth="0dp"
+                            android:paddingHorizontal="10dp"
+                            android:text="75%"
+                            android:textColor="@color/unit_unselected_text"
+                            android:textSize="11sp"
+                            app:backgroundTint="@null" />
+
+                        <Button
+                            android:id="@+id/chip100"
+                            android:layout_width="wrap_content"
+                            android:layout_height="34dp"
+                            android:background="@drawable/bg_unit_button_unselected"
+                            android:minWidth="0dp"
+                            android:paddingHorizontal="10dp"
+                            android:text="100%"
+                            android:textColor="@color/unit_unselected_text"
+                            android:textSize="11sp"
+                            app:backgroundTint="@null" />
+                    </LinearLayout>
+                </HorizontalScrollView>
+
+                <!-- Full Percentage RecyclerView (1% - 100%) -->
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvPercentages"
+                    android:layout_width="match_parent"
+                    android:layout_height="320dp"
+                    android:layout_marginTop="10dp"
+                    android:clipToPadding="false"
+                    android:nestedScrollingEnabled="true"
+                    android:scrollbars="vertical" />
+
+            </LinearLayout>
+
+            <!-- ============================================== -->
+            <!-- SECTION 3: PRESSURE GAUGE DIVISION CALCULATOR  -->
+            <!-- ============================================== -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/bg_card_industrial"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/title_division_calculator"
+                    android:textColor="@color/cyan_accent"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:text="@string/subtitle_division"
+                    android:textColor="@color/text_secondary"
+                    android:textSize="11sp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:orientation="horizontal">
+
+                    <!-- Max Gauge Pressure Input -->
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="6dp"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/label_max_pressure"
+                            android:textColor="@color/text_secondary"
+                            android:textSize="11sp" />
+
+                        <EditText
+                            android:id="@+id/etDivMaxPressure"
+                            android:layout_width="match_parent"
+                            android:layout_height="48dp"
+                            android:layout_marginTop="4dp"
+                            android:background="@drawable/bg_input_field"
+                            android:digits="0123456789."
+                            android:hint="100"
+                            android:importantForAutofill="no"
+                            android:inputType="numberDecimal"
+                            android:paddingHorizontal="10dp"
+                            android:text="100"
+                            android:textColor="@color/text_primary"
+                            android:textColorHint="@color/text_muted"
+                            android:textSize="15sp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                    <!-- Total Number of Divisions Input -->
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="6dp"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/label_divisions_count"
+                            android:textColor="@color/text_secondary"
+                            android:textSize="11sp" />
+
+                        <EditText
+                            android:id="@+id/etDivisionsCount"
+                            android:layout_width="match_parent"
+                            android:layout_height="48dp"
+                            android:layout_marginTop="4dp"
+                            android:background="@drawable/bg_input_field"
+                            android:digits="0123456789"
+                            android:hint="@string/hint_divisions"
+                            android:importantForAutofill="no"
+                            android:inputType="number"
+                            android:paddingHorizontal="10dp"
+                            android:text="10"
+                            android:textColor="@color/text_primary"
+                            android:textColorHint="@color/text_muted"
+                            android:textSize="15sp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <!-- Divisions Quick Presets -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="8dp"
+                        android:text="Presets:"
+                        android:textColor="@color/text_muted"
+                        android:textSize="11sp" />
+
+                    <Button
+                        android:id="@+id/btnPresetDiv5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp"
+                        android:layout_marginEnd="4dp"
+                        android:background="@drawable/bg_unit_button_unselected"
+                        android:minWidth="0dp"
+                        android:paddingHorizontal="8dp"
+                        android:text="5"
+                        android:textColor="@color/unit_unselected_text"
+                        android:textSize="11sp"
+                        app:backgroundTint="@null" />
+
+                    <Button
+                        android:id="@+id/btnPresetDiv10"
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp"
+                        android:layout_marginEnd="4dp"
+                        android:background="@drawable/bg_unit_button_unselected"
+                        android:minWidth="0dp"
+                        android:paddingHorizontal="8dp"
+                        android:text="10"
+                        android:textColor="@color/unit_unselected_text"
+                        android:textSize="11sp"
+                        app:backgroundTint="@null" />
+
+                    <Button
+                        android:id="@+id/btnPresetDiv20"
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp"
+                        android:layout_marginEnd="4dp"
+                        android:background="@drawable/bg_unit_button_unselected"
+                        android:minWidth="0dp"
+                        android:paddingHorizontal="8dp"
+                        android:text="20"
+                        android:textColor="@color/unit_unselected_text"
+                        android:textSize="11sp"
+                        app:backgroundTint="@null" />
+
+                    <Button
+                        android:id="@+id/btnPresetDiv50"
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp"
+                        android:layout_marginEnd="4dp"
+                        android:background="@drawable/bg_unit_button_unselected"
+                        android:minWidth="0dp"
+                        android:paddingHorizontal="8dp"
+                        android:text="50"
+                        android:textColor="@color/unit_unselected_text"
+                        android:textSize="11sp"
+                        app:backgroundTint="@null" />
+
+                    <Button
+                        android:id="@+id/btnPresetDiv100"
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp"
+                        android:background="@drawable/bg_unit_button_unselected"
+                        android:minWidth="0dp"
+                        android:paddingHorizontal="8dp"
+                        android:text="100"
+                        android:textColor="@color/unit_unselected_text"
+                        android:textSize="11sp"
+                        app:backgroundTint="@null" />
+                </LinearLayout>
+
+                <!-- Pressure per Division Result Card -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:background="@drawable/bg_card_highlight"
+                    android:orientation="vertical"
+                    android:padding="12dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/label_pressure_per_div"
+                        android:textColor="@color/text_secondary"
+                        android:textSize="11sp" />
+
+                    <TextView
+                        android:id="@+id/tvPressurePerDivision"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:text="10.0 kg/cm² / division"
+                        android:textColor="@color/cyan_accent"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/tvDivisionFormulaDesc"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:text="Formula: 100 ÷ 10 = 10"
+                        android:textColor="@color/text_secondary"
+                        android:textSize="11sp" />
+                </LinearLayout>
+
+                <!-- Toggle Division Scale Marks Breakdown -->
+                <Button
+                    android:id="@+id/btnToggleDivisions"
+                    style="@style/Widget.Material3.Button.TonalButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="42dp"
+                    android:layout_marginTop="12dp"
+                    android:background="@drawable/bg_unit_button_unselected"
+                    android:text="@string/show_all_divisions"
+                    android:textColor="@color/electric_blue"
+                    android:textSize="12sp"
+                    android:textStyle="bold"
+                    app:backgroundTint="@null" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvDivisionMarks"
+                    android:layout_width="match_parent"
+                    android:layout_height="220dp"
+                    android:layout_marginTop="8dp"
+                    android:clipToPadding="false"
+                    android:nestedScrollingEnabled="true"
+                    android:visibility="gone" />
+
+            </LinearLayout>
+
+            <!-- Bottom Engine Status -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:gravity="center"
+                android:text="@string/status_ready"
+                android:textColor="@color/text_muted"
+                android:textSize="11sp" />
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

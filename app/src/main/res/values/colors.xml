@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Dark Navy and Black Industrial Backgrounds -->
+    <color name="bg_main">#080D18</color>
+    <color name="bg_card">#151B2B</color>
+    <color name="bg_card_secondary">#1B2337</color>
+    <color name="bg_input">#101624</color>
+    <color name="bg_input_focused">#161F33</color>
+
+    <!-- Borders and Accents -->
+    <color name="border_subtle">#1F304E</color>
+    <color name="border_focus">#00A8FF</color>
+    <color name="border_light">#2A3F66</color>
+
+    <!-- Electric Blue & Cyan Industrial Accents -->
+    <color name="electric_blue">#00A8FF</color>
+    <color name="electric_blue_dark">#0077B6</color>
+    <color name="electric_blue_pressed">#005B8C</color>
+    <color name="cyan_accent">#00E5FF</color>
+    <color name="blue_glow">#2600A8FF</color>
+    <color name="blue_glow_strong">#4D00A8FF</color>
+
+    <!-- Text Colors -->
+    <color name="text_primary">#FFFFFF</color>
+    <color name="text_secondary">#8E9AA8</color>
+    <color name="text_muted">#556377</color>
+    <color name="text_blue_result">#00A8FF</color>
+    <color name="text_cyan_result">#00E5FF</color>
+    <color name="text_error">#FF5252</color>
+
+    <!-- Unit Button Colors -->
+    <color name="unit_selected_bg">#00A8FF</color>
+    <color name="unit_selected_text">#FFFFFF</color>
+    <color name="unit_unselected_bg">#1E2638</color>
+    <color name="unit_unselected_text">#94A3B8</color>
+    <color name="unit_unselected_stroke">#2A374F</color>
+
+    <!-- Action Buttons -->
+    <color name="btn_clear_bg">#232B3E</color>
+    <color name="btn_clear_text">#CBD5E1</color>
+    <color name="btn_reset_bg">#0D2F4E</color>
+    <color name="btn_reset_text">#00E5FF</color>
+
+    <!-- Table and List Highlighting -->
+    <color name="row_highlight_bg">#1D375C</color>
+    <color name="row_highlight_border">#00A8FF</color>
+    <color name="row_normal_bg">#151B2B</color>
+    <color name="row_alternate_bg">#121827</color>
+
+    <color name="black">#000000</color>
+    <color name="white">#FFFFFF</color>
+</resources>

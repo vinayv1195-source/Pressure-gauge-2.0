@@ -1,0 +1,45 @@
+<resources>
+    <string name="app_name">Pressure Gauge Calculator</string>
+    <string name="app_subtitle">Precision Industrial Gauge Analyzer &amp; Converter</string>
+    
+    <!-- Unit names and symbols -->
+    <string name="unit_kg_cm2">kg/cm²</string>
+    <string name="unit_bar">bar</string>
+    <string name="unit_psi">PSI</string>
+    <string name="unit_mpa">MPa</string>
+    
+    <!-- Section 1: Pressure Converter -->
+    <string name="title_converter">Pressure Converter</string>
+    <string name="label_input_pressure">Input Pressure Value</string>
+    <string name="hint_enter_pressure">e.g. 100</string>
+    <string name="title_instant_conversions">Live Converted Values</string>
+    
+    <!-- Section 2: Percentage Calculator -->
+    <string name="title_percentage_calculator">Gauge Percentage (1% – 100%)</string>
+    <string name="subtitle_percentage">Increments of 1% based on maximum pressure</string>
+    <string name="hint_search_percentage">Search % (1-100) or tap item</string>
+    <string name="jump_to_percent">Jump to %</string>
+    <string name="percent_prefix">Percentage:</string>
+    <string name="percent_selected_preview">Selected Scale Mark</string>
+    
+    <!-- Section 3: Division Calculator -->
+    <string name="title_division_calculator">Gauge Division Calculator</string>
+    <string name="subtitle_division">Step size and dial graduation marks</string>
+    <string name="label_max_pressure">Max Gauge Pressure</string>
+    <string name="label_divisions_count">Total Gauge Divisions</string>
+    <string name="hint_divisions">e.g. 10</string>
+    <string name="label_pressure_per_div">Pressure per Division</string>
+    <string name="divisions_breakdown_title">Graduation Marks Breakdown</string>
+    <string name="show_all_divisions">Show All Divisions</string>
+    <string name="hide_divisions">Hide Scale Marks</string>
+    
+    <!-- Buttons -->
+    <string name="btn_clear">CLEAR</string>
+    <string name="btn_reset">RESET</string>
+    
+    <!-- Validation and Errors -->
+    <string name="error_negative_value">Negative pressure is not allowed</string>
+    <string name="error_zero_divisions">Total divisions must be at least 1</string>
+    <string name="error_invalid_input">Please enter a valid numeric value</string>
+    <string name="status_ready">System Online • Offline Engine</string>
+</resources>

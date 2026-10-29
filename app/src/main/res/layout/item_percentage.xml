@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/layoutPercentItem"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="4dp"
+    android:layout_marginVertical="3dp"
+    android:background="@drawable/bg_card_industrial"
+    android:clickable="true"
+    android:focusable="true"
+    android:foreground="?attr/selectableItemBackground"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:padding="10dp">
+
+    <!-- Percentage Badge -->
+    <TextView
+        android:id="@+id/tvPercentBadge"
+        android:layout_width="54dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_badge_percent"
+        android:gravity="center"
+        android:paddingVertical="5dp"
+        android:text="100%"
+        android:textColor="@color/text_primary"
+        android:textSize="13sp"
+        android:textStyle="bold" />
+
+    <!-- Progress indicator bar showing scale progress -->
+    <ProgressBar
+        android:id="@+id/progressScale"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="0dp"
+        android:layout_height="6dp"
+        android:layout_marginHorizontal="10dp"
+        android:layout_weight="1"
+        android:max="100"
+        android:progress="50"
+        android:progressTint="@color/electric_blue" />
+
+    <!-- Calculated Value and Unit -->
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="end"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tvPressureValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="100.0"
+            android:textColor="@color/text_blue_result"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tvUnitLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="kg/cm²"
+            android:textColor="@color/text_secondary"
+            android:textSize="11sp" />
+    </LinearLayout>
+
+</LinearLayout>

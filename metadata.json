@@ -1,0 +1,6 @@
+{
+  "name": "Pressure Gauge Calculator",
+  "description": "Professional native industrial pressure gauge calculator with unit conversions, 1-100% scale breakdown, and division steps.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

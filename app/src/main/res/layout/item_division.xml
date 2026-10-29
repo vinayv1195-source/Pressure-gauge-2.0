@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="2dp"
+    android:layout_marginVertical="2.5dp"
+    android:background="@drawable/bg_card_industrial"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:paddingHorizontal="12dp"
+    android:paddingVertical="8dp">
+
+    <TextView
+        android:id="@+id/tvDivisionMarkIndex"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_badge_percent"
+        android:paddingHorizontal="8dp"
+        android:paddingVertical="4dp"
+        android:text="Div 1"
+        android:textColor="@color/cyan_accent"
+        android:textSize="12sp"
+        android:textStyle="bold" />
+
+    <View
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_marginHorizontal="12dp"
+        android:layout_weight="1"
+        android:background="@color/border_subtle" />
+
+    <TextView
+        android:id="@+id/tvDivisionMarkValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="10.0 kg/cm²"
+        android:textColor="@color/text_blue_result"
+        android:textSize="14sp"
+        android:textStyle="bold" />
+
+</LinearLayout>
